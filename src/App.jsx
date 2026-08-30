@@ -24,6 +24,7 @@ export default function App() {
     removeStop,
     reorderStop,
     loadItinerary,
+    retry,
   } = useTripPlanner()
 
   const { sessions, saveSession, deleteSession } = useLocalStorage()
@@ -63,7 +64,7 @@ export default function App() {
           {isLoading && <LoadingState onCancel={cancel} />}
 
           {isError && (
-            <ErrorState error={error} onRetry={() => generate('')} />
+            <ErrorState error={error} onRetry={retry} />
           )}
 
           {isSuccess && itinerary && (

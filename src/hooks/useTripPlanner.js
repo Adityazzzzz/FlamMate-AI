@@ -14,6 +14,7 @@ export default function useTripPlanner() {
   const [status, setStatus] = useState(STATES.IDLE)
   const [itinerary, setItinerary] = useState(null)
   const [error, setError] = useState(null)
+  const [lastQuery, setLastQuery] = useState('')
   const [tripHistory, setTripHistory] = useState([]) // conversation history for refinements
   
   // Request ID to prevent stale responses from overwriting newer ones
@@ -32,6 +33,7 @@ export default function useTripPlanner() {
 
     setStatus(STATES.LOADING)
     setError(null)
+    setLastQuery(message)
 
     try {
       const data = await generateTrip(message, null, controller.signal)
@@ -173,6 +175,7 @@ export default function useTripPlanner() {
     status,
     itinerary,
     error,
+    lastQuery,
     tripHistory,
     isLoading: status === STATES.LOADING,
     isIdle: status === STATES.IDLE,
@@ -185,5 +188,6 @@ export default function useTripPlanner() {
     removeStop,
     reorderStop,
     loadItinerary,
+    retry: () => lastQuery && generate(lastQuery),
   }
 }
