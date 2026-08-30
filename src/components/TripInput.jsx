@@ -32,7 +32,7 @@ export default function TripInput({ onSubmit, isLoading }) {
               value={text}
               onChange={(e) => setText(e.target.value)}
               placeholder="Describe your dream trip... Where do you want to go? How many days? What do you enjoy?"
-              className="w-full min-h-[120px] sm:min-h-[140px] p-4 sm:p-5 rounded-2xl border-2 border-surface-200 bg-white text-surface-900 placeholder:text-surface-400 focus:outline-none focus:border-primary-400 resize-none transition-colors duration-200 text-base leading-relaxed"
+              className="w-full min-h-[120px] sm:min-h-[140px] p-4 sm:p-5 rounded-2xl border-2 border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-900 text-surface-900 dark:text-surface-100 placeholder:text-surface-400 focus:outline-none focus:border-primary-400 resize-none transition-colors duration-200 text-base leading-relaxed"
               disabled={isLoading}
               rows={4}
             />
@@ -80,7 +80,7 @@ export default function TripInput({ onSubmit, isLoading }) {
               <button
                 key={i}
                 onClick={() => handleExampleClick(prompt)}
-                className="px-3 py-1.5 text-sm rounded-lg bg-surface-100 text-surface-600 hover:bg-primary-50 hover:text-primary-700 border border-surface-200 hover:border-primary-200 transition-colors duration-150"
+                className="px-3 py-1.5 text-sm rounded-lg bg-surface-100 dark:bg-surface-800 text-surface-600 dark:text-surface-300 hover:bg-primary-50 dark:hover:bg-primary-900/30 hover:text-primary-700 dark:hover:text-primary-300 border border-surface-200 dark:border-surface-700 hover:border-primary-200 transition-colors duration-150"
               >
                 {prompt.length > 50 ? prompt.slice(0, 50) + '…' : prompt}
               </button>

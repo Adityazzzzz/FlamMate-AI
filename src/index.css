@@ -43,8 +43,12 @@
 
 @layer base {
   body {
-    @apply font-body text-surface-900 bg-surface-50 antialiased;
+    @apply font-body text-surface-900 bg-surface-50 antialiased transition-colors duration-200;
     font-feature-settings: "cv11", "ss01", "ss03";
+  }
+
+  .dark body {
+    @apply bg-surface-950 text-surface-100;
   }
 
   h1, h2, h3, h4 {

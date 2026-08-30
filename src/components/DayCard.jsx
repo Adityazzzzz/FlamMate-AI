@@ -5,11 +5,11 @@ export default function DayCard({ day, dayIndex, onRemoveStop, onReorderStop }) 
   const [isExpanded, setIsExpanded] = useState(true)
 
   return (
-    <div className="rounded-2xl border border-surface-200 bg-white overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200">
+    <div className="rounded-2xl border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-900 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200">
       {/* Day header */}
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full flex items-center justify-between px-4 sm:px-6 py-4 hover:bg-surface-50 transition-colors duration-150 text-left"
+        className="w-full flex items-center justify-between px-4 sm:px-6 py-4 hover:bg-surface-50 dark:hover:bg-surface-800 transition-colors duration-150 text-left"
       >
         <div className="flex items-center gap-3">
           {/* Day number badge */}
@@ -42,7 +42,7 @@ export default function DayCard({ day, dayIndex, onRemoveStop, onReorderStop }) 
 
       {/* Stops list */}
       {isExpanded && (
-        <div className="px-2 sm:px-4 pb-4 border-t border-surface-100">
+        <div className="px-2 sm:px-4 pb-4 border-t border-surface-100 dark:border-surface-800">
           <div className="mt-2">
             {day.stops.map((stop, stopIndex) => (
               <StopCard

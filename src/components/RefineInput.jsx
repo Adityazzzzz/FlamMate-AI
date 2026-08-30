@@ -12,8 +12,8 @@ export default function RefineInput({ onRefine, isLoading }) {
   }
 
   return (
-    <div className="mt-8 pt-6 border-t border-surface-200">
-      <p className="text-sm font-medium text-surface-600 mb-3">
+    <div className="mt-8 pt-6 border-t border-surface-200 dark:border-surface-700">
+      <p className="text-sm font-medium text-surface-600 dark:text-surface-400 mb-3">
         ✨ Refine your itinerary
       </p>
       <form onSubmit={handleSubmit} className="flex gap-2">
@@ -22,7 +22,7 @@ export default function RefineInput({ onRefine, isLoading }) {
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="e.g. Add more food stops, make day 2 shorter..."
-          className="flex-1 px-4 py-2.5 rounded-xl border-2 border-surface-200 bg-white text-surface-900 placeholder:text-surface-400 focus:outline-none focus:border-primary-400 transition-colors text-sm"
+          className="flex-1 px-4 py-2.5 rounded-xl border-2 border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-900 text-surface-900 dark:text-surface-100 placeholder:text-surface-400 focus:outline-none focus:border-primary-400 transition-colors text-sm"
           disabled={isLoading}
         />
         <button

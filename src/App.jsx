@@ -8,6 +8,7 @@ import RefineInput from './components/RefineInput'
 import SavedSessions from './components/SavedSessions'
 import useTripPlanner from './hooks/useTripPlanner'
 import useLocalStorage from './hooks/useLocalStorage'
+import useDarkMode from './hooks/useDarkMode'
 
 export default function App() {
   const {
@@ -27,14 +28,15 @@ export default function App() {
   } = useTripPlanner()
 
   const { sessions, saveSession, deleteSession } = useLocalStorage()
+  const { isDark, toggle: toggleDark } = useDarkMode()
 
   const handleSave = () => {
     if (itinerary) saveSession(itinerary)
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-surface-50">
-      <Header />
+    <div className={`min-h-screen flex flex-col transition-colors duration-200 ${isDark ? 'bg-surface-950' : 'bg-surface-50'}`}>
+      <Header isDark={isDark} onToggleDark={toggleDark} />
 
       <main className="flex-1 max-w-5xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-10">
         {/* Input section */}
@@ -85,7 +87,7 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-surface-200 py-4 text-center text-xs text-surface-400">
+      <footer className="border-t border-surface-200 dark:border-surface-800 py-4 text-center text-xs text-surface-400">
         Built with React + Gemini AI · WanderPlan AI
       </footer>
     </div>
