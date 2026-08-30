@@ -13,7 +13,7 @@ export default function StopCard({ stop, dayIndex, stopIndex, totalStops, onRemo
   const config = CATEGORY_CONFIG[stop.category] || CATEGORY_CONFIG.culture
 
   return (
-    <div className="group relative flex gap-3 sm:gap-4 py-3 px-3 sm:px-4 rounded-xl hover:bg-surface-50 transition-colors duration-150">
+    <div className="group relative flex gap-3 sm:gap-4 py-3 px-3 sm:px-4 rounded-xl hover:bg-surface-50 dark:hover:bg-surface-800/50 transition-colors duration-150">
       {/* Timeline connector */}
       <div className="flex flex-col items-center flex-shrink-0">
         <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl ${config.color} border flex items-center justify-center text-base sm:text-lg`}>
@@ -28,7 +28,7 @@ export default function StopCard({ stop, dayIndex, stopIndex, totalStops, onRemo
       <div className="flex-1 min-w-0 pb-2">
         <div className="flex items-start justify-between gap-2">
           <div className="min-w-0">
-            <h4 className="font-semibold text-surface-900 text-sm sm:text-base leading-snug">
+            <h4 className="font-semibold text-surface-900 dark:text-surface-100 text-sm sm:text-base leading-snug">
               {stop.name}
             </h4>
             <div className="flex flex-wrap items-center gap-2 mt-0.5">

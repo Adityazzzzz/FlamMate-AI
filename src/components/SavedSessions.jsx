@@ -11,8 +11,8 @@ export default function SavedSessions({ sessions, onLoad, onDelete }) {
   }
 
   return (
-    <div className="mt-6 pt-6 border-t border-surface-200">
-      <h3 className="text-sm font-semibold text-surface-600 mb-3 flex items-center gap-2">
+    <div className="mt-8 pt-6 border-t border-surface-200 dark:border-surface-700">
+      <h3 className="text-sm font-semibold text-surface-600 dark:text-surface-400 mb-3 flex items-center gap-2">
         <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M12 8v4l3 3" />
           <circle cx="12" cy="12" r="10" />
@@ -23,11 +23,11 @@ export default function SavedSessions({ sessions, onLoad, onDelete }) {
         {sessions.map((session) => (
           <div
             key={session.id}
-            className="group flex items-center justify-between px-3 py-2.5 rounded-xl bg-white border border-surface-200 hover:border-primary-200 hover:bg-primary-50/30 transition-colors cursor-pointer"
+            className="group flex items-center justify-between px-4 py-3 rounded-xl bg-white dark:bg-surface-900 border border-surface-200 dark:border-surface-700 hover:border-primary-300 dark:hover:border-primary-500/50 hover:bg-primary-50/30 dark:hover:bg-primary-900/20 transition-colors cursor-pointer"
             onClick={() => onLoad(session.itinerary)}
           >
             <div className="min-w-0">
-              <p className="text-sm font-medium text-surface-800 truncate">
+              <p className="text-sm font-medium text-surface-800 dark:text-surface-200 truncate">
                 {session.tripTitle}
               </p>
               <p className="text-xs text-surface-400 mt-0.5">
@@ -39,7 +39,7 @@ export default function SavedSessions({ sessions, onLoad, onDelete }) {
                 e.stopPropagation()
                 onDelete(session.id)
               }}
-              className="flex-shrink-0 p-1.5 rounded-lg text-surface-300 hover:text-red-500 hover:bg-red-50 opacity-0 group-hover:opacity-100 transition-all"
+              className="flex-shrink-0 p-1.5 rounded-lg text-surface-300 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 opacity-0 group-hover:opacity-100 transition-all"
               title="Delete session"
             >
               <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

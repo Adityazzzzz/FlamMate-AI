@@ -17,7 +17,7 @@ export default function DayCard({ day, dayIndex, onRemoveStop, onReorderStop }) 
             D{day.day}
           </div>
           <div>
-            <h3 className="font-display font-bold text-surface-900 text-base sm:text-lg">
+            <h3 className="font-display font-bold text-surface-900 dark:text-white text-base sm:text-lg">
               {day.title}
             </h3>
             <p className="text-xs text-surface-400 mt-0.5">
