@@ -81,3 +81,19 @@
 .dark ::-webkit-scrollbar-thumb:hover {
   @apply bg-surface-500;
 }
+
+/* Radial gradient for sun glow effect */
+.bg-gradient-radial {
+  background-image: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hero input animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
