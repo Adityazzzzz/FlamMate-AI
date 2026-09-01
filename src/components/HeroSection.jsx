@@ -40,40 +40,39 @@ export default function HeroSection({ onSubmit, isLoading }) {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
       {/* Background Image Container */}
-      {/* TODO: Replace the URL with your landscape image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: 'url("/landscape.jpg")' }}
       >
-        {/* Subtle dark overlay to ensure text remains readable regardless of the image */}
-        <div className="absolute inset-0 bg-black/20" />
+        {/* Very subtle dark overlay so the image pops but text remains readable */}
+        <div className="absolute inset-0 bg-black/10" />
         
-        {/* Bottom fade into the rest of the application */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-surface-50 dark:from-surface-950 to-transparent" />
+        {/* Soft bottom gradient to blend into the rest of the app */}
+        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-surface-50 dark:from-surface-950 to-transparent opacity-90" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-4xl px-4 sm:px-6 flex flex-col items-center mt-12">
+      <div className="relative z-10 w-full max-w-5xl px-4 sm:px-6 flex flex-col items-center mt-16">
         {/* Hero text */}
-        <div className="text-center mb-10">
-          <h1 className="font-display font-medium text-white text-5xl sm:text-6xl md:text-7xl leading-[1.15] tracking-tight mb-5">
+        <div className="text-center mb-12">
+          <h1 className="font-display font-medium text-white text-5xl sm:text-6xl md:text-[80px] leading-[1.05] tracking-tight mb-6 drop-shadow-sm">
             Meet WanderPlan,<br />
             your AI travel<br />
             guide
           </h1>
-          <p className="text-white/90 text-sm sm:text-base max-w-md mx-auto leading-relaxed font-light">
+          <p className="text-white/90 text-base sm:text-lg max-w-md mx-auto leading-relaxed font-light drop-shadow-sm">
             An AI travel planner that turns your<br/>mood, dates, and budget into a<br/>calm, ready-to-follow route
           </p>
         </div>
 
-        {/* Floating search input */}
-        <div className="w-full max-w-2xl mb-6" id="trip-input">
+        {/* Floating search input - Widened and softened */}
+        <div className="w-full max-w-3xl mb-8" id="trip-input">
           <form onSubmit={handleSubmit}>
-            <div className="relative flex items-center bg-black/20 backdrop-blur-xl border border-white/10 rounded-full shadow-2xl p-1.5 transition-all duration-300 focus-within:bg-black/30 focus-within:border-white/20">
+            <div className="relative flex items-center bg-black/20 backdrop-blur-2xl border border-white/20 rounded-full shadow-2xl p-2 transition-all duration-300 focus-within:bg-black/30 focus-within:border-white/30">
               
               {/* Sparkle icon */}
-              <div className="pl-5 flex-shrink-0">
-                <svg className="w-5 h-5 text-white/70" viewBox="0 0 24 24" fill="currentColor">
+              <div className="pl-6 flex-shrink-0">
+                <svg className="w-5 h-5 text-white/80" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12 0L14.59 8.41L23 11L14.59 13.59L12 22L9.41 13.59L1 11L9.41 8.41L12 0Z" />
                 </svg>
               </div>
@@ -85,16 +84,16 @@ export default function HeroSection({ onSubmit, isLoading }) {
                 onChange={(e) => setText(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="Plan a romantic 5-day trip to Rome for couples"
-                className="flex-1 bg-transparent text-white placeholder:text-white/60 px-4 py-4 text-base focus:outline-none"
+                className="flex-1 bg-transparent text-white placeholder:text-white/60 px-5 py-4 text-lg font-light focus:outline-none"
                 disabled={isLoading}
               />
 
-              {/* Send button (Purple circle) */}
+              {/* Send button - Matched to Luma's soft purple/pink */}
               <div className="pr-1 flex-shrink-0">
                 <button
                   type="submit"
                   disabled={!text.trim() || isLoading}
-                  className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-200 disabled:opacity-50 bg-[#b297a7] hover:bg-[#a38697] text-white active:scale-95"
+                  className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-200 disabled:opacity-50 bg-[#b693b1] hover:bg-[#a682a1] text-white shadow-md active:scale-95"
                 >
                   {isLoading ? (
                     <svg className="w-5 h-5 animate-spin" viewBox="0 0 24 24" fill="none">
@@ -113,14 +112,14 @@ export default function HeroSection({ onSubmit, isLoading }) {
           </form>
         </div>
 
-        {/* Quick action pills */}
-        <div className="flex flex-wrap justify-center gap-3 max-w-3xl">
+        {/* Quick action pills - Refined layout */}
+        <div className="flex flex-wrap justify-center gap-3 sm:gap-4 max-w-4xl">
           {QUICK_ACTIONS.map(({ icon, label }) => (
             <button
               key={label}
               onClick={() => handleQuickAction(label)}
               disabled={isLoading}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-black/20 backdrop-blur-md border border-white/10 text-white/90 text-sm hover:bg-black/30 hover:text-white transition-all duration-200 disabled:opacity-50 font-light tracking-wide"
+              className="flex items-center gap-2.5 px-6 py-3 rounded-full bg-black/10 backdrop-blur-xl border border-white/20 text-white/90 text-sm hover:bg-black/20 hover:text-white transition-all duration-200 disabled:opacity-50 font-light tracking-wide"
             >
               <span className="text-sm opacity-70">{icon}</span>
               {label}

@@ -39,7 +39,7 @@ export default function App() {
 
   return (
     <div className={`min-h-screen flex flex-col transition-colors duration-200 ${isDark ? 'bg-surface-950' : 'bg-surface-50'}`}>
-      <Header isDark={isDark} onToggleDark={toggleDark} />
+      <Header showHero={showHero} />
 
       {/* Full-screen Hero landing */}
       {showHero && (
