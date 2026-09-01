@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 const QUICK_ACTIONS = [
-  { icon: '✨', label: 'Create a new trip' },
+  { icon: '+', label: 'Create a new trip' },
   { icon: '🧭', label: 'Inspire me where to go' },
   { icon: '🚗', label: 'Plan a road trip' },
   { icon: '⏰', label: 'Last-minute escape' },
@@ -38,58 +38,41 @@ export default function HeroSection({ onSubmit, isLoading }) {
   }
 
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden">
-      {/* Background — layered gradient that mimics a sunset landscape */}
-      <div className="absolute inset-0">
-        {/* Base gradient — warm sunset tones */}
-        <div className="absolute inset-0 bg-gradient-to-b from-amber-800/90 via-orange-700/60 to-purple-400/80" />
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
+      {/* Background Image Container */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: 'url("/landscape.jpg")' }}
+      >
+        {/* Very subtle dark overlay so the image pops but text remains readable */}
+        <div className="absolute inset-0 bg-black/10" />
         
-        {/* Landscape SVG overlay for vector art feel */}
-        <svg className="absolute bottom-0 left-0 right-0 w-full" viewBox="0 0 1440 400" preserveAspectRatio="none" style={{ height: '55%' }}>
-          {/* Far hills */}
-          <path d="M0 200 Q200 120 400 180 Q600 100 800 160 Q1000 80 1200 140 Q1350 100 1440 130 L1440 400 L0 400Z" fill="rgba(34, 85, 50, 0.6)" />
-          {/* Mid hills */}
-          <path d="M0 260 Q150 200 350 240 Q500 180 700 230 Q900 170 1100 220 Q1300 180 1440 210 L1440 400 L0 400Z" fill="rgba(45, 100, 55, 0.7)" />
-          {/* Near hills */}
-          <path d="M0 310 Q200 270 400 300 Q600 260 800 290 Q1000 250 1200 280 Q1400 260 1440 275 L1440 400 L0 400Z" fill="rgba(30, 70, 40, 0.85)" />
-          {/* Foreground */}
-          <path d="M0 350 Q300 330 600 345 Q900 325 1200 340 Q1350 335 1440 340 L1440 400 L0 400Z" fill="rgba(20, 50, 30, 0.9)" />
-        </svg>
-
-        {/* Sun/glow */}
-        <div className="absolute top-[15%] left-1/2 -translate-x-1/2 w-64 h-64 rounded-full bg-gradient-radial from-amber-300/40 via-orange-400/10 to-transparent blur-3xl" />
-        
-        {/* Purple/pink top tint like Luma */}
-        <div className="absolute top-0 right-0 w-full h-1/3 bg-gradient-to-b from-purple-500/30 to-transparent" />
-        <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-pink-400/20 to-transparent" />
-
-        {/* Subtle noise/grain overlay */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E")' }} />
+        {/* Soft bottom gradient to blend into the rest of the app */}
+        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-surface-50 dark:from-surface-950 to-transparent opacity-90" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 sm:px-6 pt-24 pb-12">
+      <div className="relative z-10 w-full max-w-5xl px-4 sm:px-6 flex flex-col items-center mt-16">
         {/* Hero text */}
-        <div className="text-center mb-10 sm:mb-12">
-          <h1 className="font-display font-bold text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight mb-5 sm:mb-6 drop-shadow-lg">
-            Meet WanderPlan,
-            <br />
-            <span className="text-purple-200">your AI travel</span>
-            <br />
+        <div className="text-center mb-12">
+          <h1 className="font-display font-medium text-white text-5xl sm:text-6xl md:text-[80px] leading-[1.05] tracking-tight mb-6 drop-shadow-sm">
+            Meet WanderPlan,<br />
+            your AI travel<br />
             guide
           </h1>
-          <p className="text-white/70 text-base sm:text-lg max-w-md mx-auto leading-relaxed">
-            An AI travel planner that turns your mood, dates, and budget into a calm, ready-to-follow route
+          <p className="text-white/90 text-base sm:text-lg max-w-md mx-auto leading-relaxed font-light drop-shadow-sm">
+            An AI travel planner that turns your<br/>mood, dates, and budget into a<br/>calm, ready-to-follow route
           </p>
         </div>
 
-        {/* Floating search input */}
-        <div className="w-full max-w-2xl mb-6" id="trip-input">
+        {/* Floating search input - Widened and softened */}
+        <div className="w-full max-w-3xl mb-8" id="trip-input">
           <form onSubmit={handleSubmit}>
-            <div className="relative flex items-center bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl shadow-black/20 transition-all duration-300 focus-within:bg-white/15 focus-within:border-white/30 focus-within:shadow-black/30">
+            <div className="relative flex items-center bg-black/20 backdrop-blur-2xl border border-white/20 rounded-full shadow-2xl p-2 transition-all duration-300 focus-within:bg-black/30 focus-within:border-white/30">
+              
               {/* Sparkle icon */}
-              <div className="pl-4 sm:pl-5 flex-shrink-0">
-                <svg className="w-5 h-5 text-purple-300" viewBox="0 0 24 24" fill="currentColor">
+              <div className="pl-6 flex-shrink-0">
+                <svg className="w-5 h-5 text-white/80" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12 0L14.59 8.41L23 11L14.59 13.59L12 22L9.41 13.59L1 11L9.41 8.41L12 0Z" />
                 </svg>
               </div>
@@ -101,16 +84,16 @@ export default function HeroSection({ onSubmit, isLoading }) {
                 onChange={(e) => setText(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="Plan a romantic 5-day trip to Rome for couples"
-                className="flex-1 bg-transparent text-white placeholder:text-white/40 px-3 sm:px-4 py-4 sm:py-5 text-base sm:text-lg focus:outline-none"
+                className="flex-1 bg-transparent text-white placeholder:text-white/60 px-5 py-4 text-lg font-light focus:outline-none"
                 disabled={isLoading}
               />
 
-              {/* Send button */}
-              <div className="pr-2 sm:pr-3 flex-shrink-0">
+              {/* Send button - Matched to Luma's soft purple/pink */}
+              <div className="pr-1 flex-shrink-0">
                 <button
                   type="submit"
                   disabled={!text.trim() || isLoading}
-                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed bg-gradient-to-br from-purple-400 to-purple-600 hover:from-purple-500 hover:to-purple-700 text-white shadow-lg shadow-purple-500/30 active:scale-95"
+                  className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-200 disabled:opacity-50 bg-[#b693b1] hover:bg-[#a682a1] text-white shadow-md active:scale-95"
                 >
                   {isLoading ? (
                     <svg className="w-5 h-5 animate-spin" viewBox="0 0 24 24" fill="none">
@@ -118,7 +101,7 @@ export default function HeroSection({ onSubmit, isLoading }) {
                       <path d="M4 12a8 8 0 018-8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="opacity-75" />
                     </svg>
                   ) : (
-                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <line x1="12" y1="19" x2="12" y2="5" />
                       <polyline points="5 12 12 5 19 12" />
                     </svg>
@@ -129,24 +112,21 @@ export default function HeroSection({ onSubmit, isLoading }) {
           </form>
         </div>
 
-        {/* Quick action pills */}
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 max-w-2xl">
+        {/* Quick action pills - Refined layout */}
+        <div className="flex flex-wrap justify-center gap-3 sm:gap-4 max-w-4xl">
           {QUICK_ACTIONS.map(({ icon, label }) => (
             <button
               key={label}
               onClick={() => handleQuickAction(label)}
               disabled={isLoading}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 text-white/80 text-sm hover:bg-white/20 hover:text-white hover:border-white/25 transition-all duration-200 disabled:opacity-50"
+              className="flex items-center gap-2.5 px-6 py-3 rounded-full bg-black/10 backdrop-blur-xl border border-white/20 text-white/90 text-sm hover:bg-black/20 hover:text-white transition-all duration-200 disabled:opacity-50 font-light tracking-wide"
             >
-              <span className="text-sm">{icon}</span>
+              <span className="text-sm opacity-70">{icon}</span>
               {label}
             </button>
           ))}
         </div>
       </div>
-
-      {/* Bottom fade into main content */}
-      <div className="relative z-10 h-16 bg-gradient-to-b from-transparent to-surface-50 dark:to-surface-950" />
     </section>
   )
 }
