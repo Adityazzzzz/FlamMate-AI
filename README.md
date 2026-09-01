@@ -1,161 +1,101 @@
-# 🗺️ WanderPlan AI — Trip Planner
+# WanderPlan AI — Trip Planner
 
-An interactive AI-powered trip planner built with React. Describe your dream trip in plain text, and the AI generates a structured day-by-day itinerary that you can expand, reorder, remove stops from, and refine with follow-up prompts.
+**Author:** ADITYA SING (23U03031)
 
-**Built for the Flam AI Frontend Internship Assignment.**
+WanderPlan is an AI-powered travel planner that takes free-form natural language input and generates a structured, interactive day-by-day itinerary. It heavily focuses on reliable UI rendering, robust error handling, and a polished, "Luma-inspired" glassmorphism aesthetic.
 
-![React](https://img.shields.io/badge/React-19-blue) ![Vite](https://img.shields.io/badge/Vite-8-purple) ![Tailwind](https://img.shields.io/badge/Tailwind-4-cyan) ![Gemini](https://img.shields.io/badge/Gemini-2.0_Flash-orange)
+## 🚀 Setup & Execution
 
----
+**Prerequisites:** Node.js (v18+)
 
-## ✨ Features
+### 1. Install Dependencies
 
-### Core
-- **Free-form text input** — describe any trip in natural language
-- **Structured AI output** — AI returns JSON parsed into interactive UI cards
-- **Day-by-day itinerary** — expandable/collapsible day cards with categorized stops
-- **Interactive controls** — reorder stops (up/down), remove stops, expand/collapse all
-- **Refinement loop** — modify existing itinerary with follow-up prompts (e.g., "add more food stops")
-- **Error handling** — handles malformed JSON, wrong schema, empty responses, timeouts, rate limits, network errors
-- **Loading skeleton** — beautiful skeleton UI matching the itinerary layout
-- **Mobile responsive** — works on all screen sizes with touch-friendly targets
-
-### Stretch Goals Implemented
-- ✅ Different block types (category-based cards with icons: 🍜 food, 🏛️ culture, 🏔️ adventure, etc.)
-- ✅ Refinement loop (follow-up prompts that edit existing itinerary)
-- ✅ Save & reload sessions (localStorage persistence, up to 10 saved trips)
-- ✅ Dark mode (toggle + system preference detection)
-- ✅ Animations (CSS transitions on expand/collapse, hover effects)
-
----
-
-## 🚀 Setup
-
-### Prerequisites
-- Node.js 18+ 
-- A [Gemini API key](https://aistudio.google.com/apikey) (free, no credit card)
-
-### Installation
+Run the following in the root directory:
 
 ```bash
-# Clone the repo
-git clone <your-repo-url>
-cd flam-assignment
-
-# Install dependencies
 npm install
+```
 
-# Create .env file with your Gemini API key
-cp .env.example .env
-# Edit .env and add your key: GEMINI_API_KEY=your_key_here
+### 2. Environment Variables
 
-# Start the backend server (terminal 1)
-npm run server
+Create a `.env` file in the root directory and add your Gemini API key:
 
-# Start the frontend dev server (terminal 2)
+```
+GEMINI_API_KEY=your_gemini_api_key_here
+PORT=3001
+```
+
+### 3. Run the Application
+
+This project uses a separated frontend (Vite/React) and backend (Express). You need to run both concurrently.
+
+**Terminal 1 (Backend):**
+
+```bash
+node server/index.js
+```
+
+**Terminal 2 (Frontend):**
+
+```bash
 npm run dev
 ```
 
 Open http://localhost:5173 in your browser.
 
-### Production Build
+## ⏱️ Time Spent
 
-```bash
-npm run build
-npm run preview
-```
+**Total Time:** ~[Insert Hours] hours
 
----
+### Breakdown
 
-## 🏗️ Architecture
-
-```
-├── server/                 # Express backend (API proxy)
-│   ├── index.js           # Express server, /api/generate endpoint
-│   ├── gemini.js          # Gemini SDK wrapper
-│   └── prompts.js         # System prompt + user prompt builders
-│
-├── src/
-│   ├── components/        # React UI components
-│   │   ├── Header.jsx     # App header with vector art + dark mode toggle
-│   │   ├── TripInput.jsx  # Free-form textarea with example prompts
-│   │   ├── EmptyState.jsx # Landing state with vector SVG illustration
-│   │   ├── Itinerary.jsx  # Full trip display wrapper
-│   │   ├── DayCard.jsx    # Expandable day with stops
-│   │   ├── StopCard.jsx   # Individual stop with actions
-│   │   ├── LoadingState.jsx   # Skeleton loading UI
-│   │   ├── ErrorState.jsx     # Error display with categorized messages
-│   │   ├── RefineInput.jsx    # Follow-up prompt input
-│   │   └── SavedSessions.jsx  # Recent trips sidebar
-│   │
-│   ├── hooks/
-│   │   ├── useTripPlanner.js  # Core state machine (idle/loading/success/error)
-│   │   ├── useLocalStorage.js # Session persistence
-│   │   └── useDarkMode.js     # Theme toggle
-│   │
-│   ├── utils/
-│   │   ├── api.js             # Fetch wrapper with timeout + abort
-│   │   └── validateItinerary.js # Schema validation + defaults
-│   │
-│   ├── App.jsx            # Root component wiring everything
-│   ├── main.jsx           # Entry point
-│   └── index.css          # Tailwind + custom theme
-│
-├── vite.config.js         # Vite config with Tailwind + API proxy
-└── .env.example           # Environment variables template
-```
-
-### Key Design Decisions
-
-1. **State Machine Pattern** — `useTripPlanner` manages a clean `idle → loading → success | error` state machine with request deduplication and stale response prevention via request IDs.
-
-2. **API Key Security** — The Gemini API key lives server-side in Express. The frontend only hits `/api/generate`. In production, this prevents key exposure.
-
-3. **Defensive JSON Parsing** — The server tries `JSON.parse()` first, then falls back to regex extraction of JSON from markdown code fences. The frontend then validates the schema with `validateItinerary()`, filling defaults for any missing fields.
-
-4. **Request ID Guard** — Each request gets a monotonically increasing ID. If a newer request fires before the old one completes, the old response is discarded — preventing stale data from overwriting fresher results.
-
-5. **AbortController Timeout** — API calls have a 30s timeout via `AbortController`. Users can also cancel manually via the loading state's cancel button.
-
----
+- Core frontend architecture & state management: [X] hours
+- API integration & backend proxy: [X] hours
+- UI styling and Luma-inspired design implementation: [X] hours
+- Edge case handling (validation, abort controllers, error states): [X] hours
 
 ## 🤖 AI Usage Note
 
-This project was built with the assistance of **Antigravity (Claude)** AI coding assistant. The AI helped with:
-- Scaffolding the project structure and component architecture
-- Writing boilerplate code for components, hooks, and server endpoints
-- Generating SVG vector art illustrations
-- Implementing Tailwind CSS styling and dark mode
+In the spirit of transparency, here is how I utilized AI tools during this assignment:
 
-All code was reviewed and understood by the developer. The architecture decisions (state machine pattern, request deduplication, defensive parsing) are intentional design choices I can explain and modify.
+- **Code Generation & Boilerplate:** Used AI to scaffold the initial Vite/Tailwind setup and generate the dummy data for skeleton loaders.
 
----
+- **UI/UX Styling:** Utilized AI as a pair-programmer to iterate on complex Tailwind CSS classes, specifically for achieving the glassmorphism effects, background image overlays, and matching the specific Luma reference design.
 
-## ⚠️ Known Limitations
+- **Debugging:** Used AI to troubleshoot a 502 Server Gateway error caused by the Gemini SDK's systemInstruction initialization order.
 
-1. **No streaming** — Responses are fetched in full, not streamed. For long itineraries, there's a noticeable wait.
-2. **No drag-and-drop** — Reordering uses up/down buttons instead of drag-and-drop (simpler, more accessible, works on mobile).
-3. **No cross-day reordering** — Stops can only be reordered within their day, not moved between days.
-4. **LocalStorage limits** — Session storage is capped at 10 trips. Very large itineraries may hit browser storage limits.
-5. **No deployment** — Currently runs locally only. Could be deployed to Vercel (frontend) + Railway (backend).
+- **Prompt Engineering:** Leveraged AI to refine the system instructions passed to the Gemini model to ensure strictly formatted JSON outputs.
 
----
+## 🏗️ Architecture & Data Handling
 
-## ⏱️ Time Spent
+A major focus of this project was turning unpredictable AI output into a reliable, stateful UI without crashing.
 
-| Phase | Time |
-|-------|------|
-| Planning & architecture | ~30 min |
-| Backend + Gemini integration | ~45 min |
-| Core UI components | ~2 hrs |
-| Error handling & validation | ~1 hr |
-| Dark mode + polish | ~45 min |
-| Testing & debugging | ~30 min |
-| README + docs | ~20 min |
-| **Total** | **~5.5 hrs** |
+### Race Conditions & Stale Data
 
----
+The `useTripPlanner` hook utilizes `AbortController` and a `requestIdRef`. If a user submits a new prompt while an older one is still generating, the older network request is aborted, and its response is ignored to prevent stale data overwrites.
 
-## 📄 License
+### Validation Layer
 
-MIT
+The `validateItinerary.js` utility strictly checks the AI's JSON output. If the AI returns malformed JSON, hallucinates the schema, or includes markdown code fences, the app catches the error gracefully and displays a user-friendly retry state rather than crashing the React tree.
+
+### State Machine
+
+The app avoids complex boolean flags (`isLoading`, `hasError`) by using a strict state machine (`IDLE`, `LOADING`, `SUCCESS`, `ERROR`) to determine which UI component to render.
+
+### Security
+
+The Gemini API key is completely hidden from the browser. All AI requests are routed through a lightweight Node.js/Express backend.
+
+## 🚧 Known Limitations & Next Steps
+
+### Streaming Responses
+
+Currently, the user waits for the entire JSON payload to generate before the UI updates. Implementing a streaming JSON parser (like ai SDK's `experimental_streamObject`) would allow day cards to render progressively.
+
+### Drag-and-Drop Reordering
+
+While users can reorder stops using the up/down buttons, adding full drag-and-drop support (via `@hello-pangea/dnd`) would improve the UX.
+
+### Persisted Backend Storage
+
+Sessions are currently saved to the browser's localStorage. Moving this to a proper database (like PostgreSQL with Prisma) would allow cross-device session reloading.
